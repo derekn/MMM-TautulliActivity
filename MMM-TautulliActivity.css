@@ -1,0 +1,30 @@
+.MMM-TautulliActivity .loading,
+.MMM-TautulliActivity .no-activity {
+	font-style: italic;
+}
+.MMM-TautulliActivity .error {
+	color: #cc0000;
+}
+
+/* activity row */
+
+.MMM-TautulliActivity .activity .title::before {
+	content: '- ';
+}
+
+/* details row */
+
+.MMM-TautulliActivity .details {
+	margin-left: 24.4px;
+}
+.MMM-TautulliActivity .details .quality::before {
+	content: '(';
+}
+.MMM-TautulliActivity .details .transcode::after {
+	content: ')';
+}
+.MMM-TautulliActivity .details .quality,
+.MMM-TautulliActivity .details .transcode {
+	font-style: italic;
+	text-transform: lowercase;
+}
