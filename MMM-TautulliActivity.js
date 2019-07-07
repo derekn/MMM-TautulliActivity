@@ -50,9 +50,9 @@ Module.register('MMM-TautulliActivity', {
 				wrapper.innerHTML += `
 					<div class="activity-row ${row.state}" data-user-id="${row.user_id}">
 						<div class="activity">
-							<i class="state-icon bright ${this.config.stateIcons[row.state || 'far circle']}"></i> <span class="user-name bright">${row.friendly_name}</span> <span class="title no-wrap">${row.full_title}</span>
+							<i class="state-icon bright ${this.config.stateIcons[row.state || 'far circle']}"></i> <span class="user-name bright">${row.friendly_name}</span> <span class="title no-wrap">${row.full_title}</span> <span class="title-year dimmed">(${row.year})</span>
 						</div>
-						<div class="details">
+						<div class="details xsmall">
 							<span class="duration">${this.convertMS(row.view_offset)} / -${this.convertMS(row.duration - row.view_offset)}</span> <span class="quality">${row.quality_profile}</span> <span class="transcode">${row.transcode_decision}</span>
 						</div>
 					</div>`;
