@@ -7,6 +7,8 @@
 
 Displays the currently playing [Plex](https://www.plex.tv) stream activity on your MagicMirror pulled from the Tautulli API.
 
+![screenshot](screenshot.png)
+
 ### Install
 
 Clone into your MM `modules` folder
