@@ -2,7 +2,7 @@
  * MMM-TautulliActivity
  * Tautulli watch activity module for MagicMirror2.
  *
- * @author Derek Nicol <derek@dereknicol.com>
+ * @author Derek Nicol <1420397+derekn@users.noreply.github.com>
  * @license https://opensource.org/licenses/MIT
  */
 
@@ -11,6 +11,7 @@ Module.register('MMM-TautulliActivity', {
 		host: '',
 		apiKey: '',
 		updateFrequency: 2,
+		hideOnNoActivity: false,
 		animationSpeed: 500,
 		stateIcons: {
 			'playing': 'far fa-play-circle',
@@ -44,6 +45,9 @@ Module.register('MMM-TautulliActivity', {
 		} else if (typeof this.activity_data === 'string') {
 			wrapper.innerHTML = `<span class="error">${this.activity_data}</span>`;
 		} else if (! this.activity_data.sessions.length) {
+			if (this.config.hideOnNoActivity && ! this.hidden) {
+				this.hide();
+			}
 			wrapper.innerHTML = '<span class="no-activity dimmed">nothing is currently playing</span>';
 		} else {
 			for (const row of this.activity_data.sessions) {
@@ -56,6 +60,9 @@ Module.register('MMM-TautulliActivity', {
 							<span class="duration">${this.convertMS(row.view_offset)} / -${this.convertMS(row.duration - row.view_offset)}</span> <span class="quality">${row.quality_profile}</span> <span class="transcode">${row.transcode_decision}</span>
 						</div>
 					</div>`;
+			}
+			if (this.hidden) {
+				this.show()
 			}
 		}
 

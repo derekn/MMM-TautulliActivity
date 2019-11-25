@@ -42,3 +42,4 @@ Add to "modules" in `config/config.js`
 | `apiKey` | Tautulli API key, found in Settings / Web Interface, at the bottom | **required** |
 | `updateFrequency` | Update frequency in minutes to poll the API for activity | 2 |
 | `animationSpeed` | Animation speed in milliseconds for display updates, set to 0 for none | 500 |
+| `hideOnNoActivity` | Hide widget when there is no current playing activity | false |
