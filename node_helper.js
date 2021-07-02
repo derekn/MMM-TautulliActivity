@@ -3,7 +3,7 @@
  */
 
 const NodeHelper = require('node_helper');
-const request = require('request');
+const fetch = require('node-fetch');
 
 module.exports = NodeHelper.create({
 	config: null,
@@ -12,21 +12,29 @@ module.exports = NodeHelper.create({
 
 	getData: function() {
 		console.info('MMM-TautulliActivity: fetching data');
-		var req = request.defaults({'agentOptions': {'rejectUnauthorized': false}});
-		req.get(`${this.config.host}/api/v2?apikey=${this.config.apiKey}&cmd=get_activity`, (err, res, body) => {
-			var data = JSON.parse(body);
-
-			if (err || res.statusCode != 200) {
-				data = data.response.message || 'there was an error';
-				console.error('MMM-TautulliActivity: ' + data);
-			} else {
-				data = data.response.data;
-			}
-
-			this.data = data;
-			this.sendSocketNotification('SET_DATA', this.data);
-			this.reloadTimer = setTimeout(() => { this.getData(this.config) }, this.config.updateFrequency);
-		});
+		fetch(`${this.config.host}/api/v2?apikey=${this.config.apiKey}&cmd=get_activity`)
+			.then((res) => {
+				if (res.ok) {
+					return res;
+				} else {
+					throw res.statusText;
+				}
+			})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.response.result != 'success') {
+					throw data.response.message || 'there was an error';
+				}
+				this.data = data.response.data;
+				this.sendSocketNotification('SET_DATA', this.data);
+			})
+			.catch((err) => {
+				console.error('MMM-TautulliActivity: ' + err)
+				this.sendSocketNotification('SET_DATA', err);
+			})
+			.finally(() => {
+				this.reloadTimer = setTimeout(() => { this.getData(this.config) }, this.config.updateFrequency);
+			});
 	},
 
 	socketNotificationReceived: function(notification, payload) {
