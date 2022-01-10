@@ -4,9 +4,6 @@
 
 const NodeHelper = require('node_helper');
 const fetch = require('node-fetch');
-const https = require('https');
-
-const httpsAgent = new https.Agent({rejectUnauthorized: false});
 
 module.exports = NodeHelper.create({
 	config: null,
@@ -15,7 +12,7 @@ module.exports = NodeHelper.create({
 
 	getData: function() {
 		console.info('MMM-TautulliActivity: fetching data');
-		fetch(`${this.config.host}/api/v2?apikey=${this.config.apiKey}&cmd=get_activity`, {agent: httpsAgent})
+		fetch(`${this.config.host}/api/v2?apikey=${this.config.apiKey}&cmd=get_activity`)
 			.then((res) => {
 				if (res.ok) {
 					return res;
