@@ -36,10 +36,10 @@ Add to "modules" in `config/config.js`
 
 #### Options
 
-| Config Name | Description | Default Value |
-| --- | --- | --- |
-| `host` | Tautulli hostname/ip address, example: http://localhost:8181 | **required** |
-| `apiKey` | Tautulli API key, found in Settings / Web Interface, at the bottom | **required** |
-| `updateFrequency` | Update frequency in minutes to poll the API for activity | 2 |
-| `animationSpeed` | Animation speed in milliseconds for display updates, set to 0 for none | 500 |
-| `hideOnNoActivity` | Hide widget when there is no current playing activity | false |
+| Config Name        | Description                                                            | Default Value |
+| ------------------ | ---------------------------------------------------------------------- | ------------- |
+| `host`             | Tautulli hostname/ip address, example: http://localhost:8181           | **required**  |
+| `apiKey`           | Tautulli API key, found in Settings / Web Interface, at the bottom     | **required**  |
+| `updateFrequency`  | Update frequency in minutes to poll the API for activity               | 2             |
+| `animationSpeed`   | Animation speed in milliseconds for display updates, set to 0 for none | 500           |
+| `hideOnNoActivity` | Hide widget when there is no current playing activity                  | false         |
